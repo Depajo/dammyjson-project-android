@@ -38,19 +38,6 @@ fun MainScreen(navControlle: NavController) {
 }
 
 @Composable
-fun AddUserScreen(navController: NavController) {
-    Text("Hello")
-    Button(
-        onClick = {
-            // Tee jotain uuden kohteen kanssa
-            navController.popBackStack()
-        }
-    ) {
-        Text("Add item")
-    }
-}
-
-@Composable
 fun CreateUserList() {
     val fetch = FetchTools()
     var userData by remember { mutableStateOf(listOf<User>()) }

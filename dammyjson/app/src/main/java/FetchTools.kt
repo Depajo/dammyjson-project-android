@@ -46,8 +46,16 @@ class FetchTools {
     }
 
     fun parseDatatoObject(jsonData: String): List<User> {
-        Log.d("test", jsonData)
+        //Log.d("test", jsonData)
         val objectMapper = ObjectMapper().registerModule(KotlinModule())
         return objectMapper.readValue<Users>(jsonData).users
+    }
+
+    fun parseOneUserData(jsonData: String): User {
+        Log.d("testUser", jsonData.toString())
+        val objectMapper = ObjectMapper().registerModule(KotlinModule())
+        val d = objectMapper.readValue<User>(jsonData)
+        Log.d("testUser", d.toString())
+        return d
     }
 }

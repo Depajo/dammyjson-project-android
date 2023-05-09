@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.icons.Icons
@@ -28,6 +29,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.VisualTransformation
 
 
 @Composable
@@ -73,12 +77,8 @@ fun UsersList(users: List<User>, navController: NavController) {
                 .fillMaxWidth()
                 .padding(1.5.dp)
                 ,
-            colors = ButtonDefaults.buttonColors(backgroundColor =
-                if (isSystemInDarkTheme()) {
-                    Color.Black
-                } else {
-                    Color.White
-                }
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = if (isSystemInDarkTheme()) Color.Black else Color.White
             ),
             elevation = ButtonDefaults.elevation(defaultElevation = 0.dp)) {
                 Row(
@@ -124,9 +124,30 @@ fun SearchField() {
 }
 
 @Composable
+fun MyTextField(placeholder: String, value: String, keyboardType: KeyboardType, onValueChange: (String) -> Unit) {
+    TextField(
+        value = value,
+        onValueChange = { onValueChange(it) },
+        placeholder = { Text(placeholder) },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 10.dp),
+
+        singleLine = true,
+        maxLines = 1,
+        keyboardOptions = KeyboardOptions.Default.copy(
+            imeAction = ImeAction.Done,
+            keyboardType = keyboardType
+
+        ),
+        visualTransformation = VisualTransformation.None
+    )
+}
+
+@Composable
 fun AddButton(navControlle: NavController, modifier: Modifier = Modifier) {
     FloatingActionButton(
-        onClick = { navControlle.navigate("AddUser") },
+        onClick = { navControlle.navigate("AddUser/${null}") },
         modifier = modifier
     ) {
         Icon(Icons.Filled.Add, contentDescription = "Add Button")

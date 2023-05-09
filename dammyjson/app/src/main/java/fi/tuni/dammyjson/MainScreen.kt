@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.RoundedCorner
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 
 import androidx.compose.foundation.lazy.LazyColumn
@@ -70,9 +71,15 @@ fun UsersList(users: List<User>, navController: NavController) {
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp)
-                .border(0.4.dp, Color.Gray),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
+                .padding(1.5.dp)
+                ,
+            colors = ButtonDefaults.buttonColors(backgroundColor =
+                if (isSystemInDarkTheme()) {
+                    Color.Black
+                } else {
+                    Color.White
+                }
+            ),
             elevation = ButtonDefaults.elevation(defaultElevation = 0.dp)) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -82,7 +89,7 @@ fun UsersList(users: List<User>, navController: NavController) {
                     Text(
                         "${user.firstName} ${user.lastName}",
                         Modifier
-                            .padding(2.dp),
+                            .padding(vertical = 10.dp),
                         fontSize = 20.sp,
                         fontFamily = FontFamily.Default,
                         fontWeight = FontWeight.Normal
@@ -103,10 +110,16 @@ fun SearchField() {
         placeholder = { Text("Hae") },
         modifier = Modifier
             .fillMaxWidth()
-            .border(1.dp, Color.Gray)
+            .padding(10.dp)
             .clip(
-                RoundedCornerShape(10.dp)
-            )
+                RoundedCornerShape(25.dp)
+            ),
+        colors = TextFieldDefaults.textFieldColors(
+            focusedIndicatorColor = Color.Transparent, // Aseta viivan väriksi läpinäkyvä
+            unfocusedIndicatorColor = Color.Transparent // Aseta viivan väriksi läpinäkyvä
+        )
+
+
     )
 }
 
@@ -114,7 +127,6 @@ fun SearchField() {
 fun AddButton(navControlle: NavController, modifier: Modifier = Modifier) {
     FloatingActionButton(
         onClick = { navControlle.navigate("AddUser") },
-        backgroundColor = Color.Cyan,
         modifier = modifier
     ) {
         Icon(Icons.Filled.Add, contentDescription = "Add Button")

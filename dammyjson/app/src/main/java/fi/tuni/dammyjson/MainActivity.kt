@@ -32,6 +32,11 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navController, startDestination = "home") {
                         composable("home") { MainScreen(navController) }
                         composable("AddUser") { AddUserScreen(navController) }
+                        composable("UserScreen/{userId}") {
+                            val userId = it.arguments?.getString("userId")
+                            UserScreen(navController, userId?.toInt())
+
+                        }
                     }
                 }
             }

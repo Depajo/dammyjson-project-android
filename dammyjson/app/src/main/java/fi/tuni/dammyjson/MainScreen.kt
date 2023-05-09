@@ -34,7 +34,7 @@ fun MainScreen(navControlle: NavController) {
     Box {
         Column {
             SearchField()
-            CreateUserList()
+            CreateUserList(navControlle)
         }
         AddButton(navControlle, modifier = Modifier
             .padding(bottom = 20.dp, end = 20.dp)
@@ -43,7 +43,7 @@ fun MainScreen(navControlle: NavController) {
 }
 
 @Composable
-fun CreateUserList() {
+fun CreateUserList(navController: NavController) {
     val fetch = FetchTools()
     var userData by remember { mutableStateOf(listOf<User>()) }
     fetch.getData(url = "https://dummyjson.com/users", response = {
@@ -52,16 +52,21 @@ fun CreateUserList() {
     }, failure = {
         println(it)
     })
-
-    UsersList(users = userData)
+    if (userData.isEmpty()) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+        }
+    } else {
+        UsersList(users = userData, navController)
+    }
 }
 
 @Composable
-fun UsersList(users: List<User>) {
+fun UsersList(users: List<User>, navController: NavController) {
     LazyColumn {
         items(users) { user ->
             Button(onClick = {
-                
+                navController.navigate( "UserScreen/${user.id}")
             },
             modifier = Modifier
                 .fillMaxWidth()

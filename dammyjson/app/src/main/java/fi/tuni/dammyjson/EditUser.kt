@@ -72,7 +72,24 @@ fun Edit(user: User, navController: NavController) {
         MyTextField(placeholder = "Username", username, KeyboardType.Text) { username = it }
         MyTextField(placeholder = "Password", password, KeyboardType.Password) { password = it }
 
+        DeleteUserButton(user, Modifier.align(Alignment.CenterHorizontally), navController)
     }
+}
+@Composable
+fun DeleteUserButton(user: User, modifier: Modifier, navController: NavController) {
+
+    Button(
+        onClick = {
+                  navController.navigate("home")
+
+        },
+        modifier = modifier.padding(10.dp),
+        colors = ButtonDefaults.buttonColors(Color.Transparent),
+        elevation = null,
+        shape = RoundedCornerShape(30.dp)) {
+        Text("Delete User",  color = Color.Red)
+    }
+
 }
 
 @Composable

@@ -66,7 +66,6 @@ fun Add(navController: NavController) {
         MyTextField(placeholder = "Phone", phone, KeyboardType.Phone) { phone = it }
         MyTextField(placeholder = "Username", username, KeyboardType.Text) { username = it }
         MyTextField(placeholder = "Password", password, KeyboardType.Password) { password = it }
-        val context = LocalContext.current
 
 
     }

@@ -3,18 +3,12 @@ package fi.tuni.dammyjson
 import FetchTools
 import User
 import android.util.Log
-import android.view.RoundedCorner
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.*
@@ -26,13 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.VisualTransformation
-
 
 @Composable
 fun MainScreen(navControlle: NavController) {
@@ -118,27 +107,6 @@ fun SearchField() {
         )
 
 
-    )
-}
-
-@Composable
-fun MyTextField(placeholder: String, value: String, keyboardType: KeyboardType, onValueChange: (String) -> Unit) {
-    TextField(
-        value = value,
-        onValueChange = { onValueChange(it) },
-        placeholder = { Text(placeholder) },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 10.dp),
-
-        singleLine = true,
-        maxLines = 1,
-        keyboardOptions = KeyboardOptions.Default.copy(
-            imeAction = ImeAction.Done,
-            keyboardType = keyboardType
-
-        ),
-        visualTransformation = VisualTransformation.None
     )
 }
 

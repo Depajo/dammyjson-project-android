@@ -57,7 +57,7 @@ fun Edit(user: User, navController: NavController) {
                 EditUserButton(user, Modifier.align(alignment = Alignment.TopEnd), navController)
             }
 
-            Text("Add User",
+            Text("Edit User",
                 fontFamily = FontFamily.SansSerif,
                 fontSize = 30.sp,
                 modifier = Modifier.align(Alignment.Center)
@@ -71,8 +71,6 @@ fun Edit(user: User, navController: NavController) {
         MyTextField(placeholder = "Phone", phone, KeyboardType.Phone) { phone = it }
         MyTextField(placeholder = "Username", username, KeyboardType.Text) { username = it }
         MyTextField(placeholder = "Password", password, KeyboardType.Password) { password = it }
-        val context = LocalContext.current
-
 
     }
 }

@@ -38,11 +38,14 @@ fun Add(navController: NavController) {
     var password by remember { mutableStateOf("") }
     Column {
         Box {
+            // Code for the back button.
             IconButton(Icons.Filled.ArrowBack, "Back", Modifier.align(Alignment.TopStart)) {
                 navController.popBackStack()
             }
         }
+
         Text("Add User", fontFamily = FontFamily.SansSerif, fontSize = 30.sp)
+
         MyTextField(placeholder = "First Name", firstName, KeyboardType.Text) { firstName = it }
         MyTextField(placeholder = "Last Name", lastName, KeyboardType.Text) { lastName = it}
         MyTextField(placeholder = "Age", age, KeyboardType.Number) { age = it}
@@ -58,7 +61,7 @@ fun Add(navController: NavController) {
                     val userJson = fetch.parseUserDataToJson(user)
                     fetch.postData("https://dummyjson.com/users/add", userJson, {
                         println(it)
-                        //This code launches a coroutine on the main thread and shows a toast message.
+                        //Code launch a coroutine on the main thread and shows a toast message.
                         CoroutineScope(Dispatchers.Main).launch {
                             Toast.makeText(
                                 context,
@@ -80,6 +83,7 @@ fun Add(navController: NavController) {
                     })
 
                 } else {
+
                     CoroutineScope(Dispatchers.Main).launch {
                         Toast.makeText(
                             context,

@@ -27,7 +27,6 @@ import androidx.navigation.compose.rememberNavController
 import fi.tuni.dammyjson.ui.theme.DammyjsonTheme
 
 class MainActivity : ComponentActivity() {
-    val fetch = FetchTools()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -42,10 +41,14 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navController, startDestination = "home") {
                         composable("home") { MainScreen(navController) }
                         composable("AddUser/{userId}") {
+                            // Get the userId from the arguments
                             val userId: String? = it.arguments?.getString("userId")
+                            // If userId is not null, then we are editing an existing user
                             if (userId != "null") {
+                                // Convert the userId to an Int and pass it to the EditOrAddScreenSelector
                                 EditOrAddScreenSelector(navController, userId?.toInt())
                             } else {
+                                // If userId is null, then we are adding a new user
                                 EditOrAddScreenSelector(navController, null)
                             }
                         }
@@ -64,6 +67,7 @@ class MainActivity : ComponentActivity() {
     fun EditOrAddScreenSelector(navController: NavController, userId: Int?) {
         var data: User? by remember { mutableStateOf(null) }
         val fetch = FetchTools()
+
         if (userId != null) {
             fetch.getData("https://dummyjson.com/users/${userId}", {
                 println(it)
@@ -72,15 +76,19 @@ class MainActivity : ComponentActivity() {
                 println(it)
             })
         }
+
+        // If userId is not null, then we are editing an existing user
         if (userId != null) {
             if (data == null) {
                 Box(modifier = Modifier.fillMaxSize()) {
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 }
             } else {
+                // If data is not null, then we have the data for the user we are editing
                 data?.let { Edit(it, navController) }
             }
         } else {
+            // If userId is null, then we are adding a new user
             Add(navController)
         }
 

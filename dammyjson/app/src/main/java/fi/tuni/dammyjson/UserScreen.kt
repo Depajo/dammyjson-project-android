@@ -23,6 +23,7 @@ import androidx.navigation.NavController
 
 @Composable
 fun UserScreen(navController: NavController, userId: Int? = null) {
+    // Fetch data from server
     val fetch = FetchTools()
     var data: User? by remember { mutableStateOf(null) }
 
@@ -34,21 +35,24 @@ fun UserScreen(navController: NavController, userId: Int? = null) {
             println(it)
         })
     }
+
+    // Show data if it is not null else show loading screen
     if (data != null) {
         UserFound(navController, data!!)
     } else {
-        UserNotFound(navController)
+        ProcessView(navController)
     }
 }
 
 @Composable
-fun UserNotFound(navController: NavController) {
+fun ProcessView(navController: NavController) {
     Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.align(Alignment.Center)) {
             CircularProgressIndicator()
         }
     }
 }
+
 @Composable
 fun UserFound(navController: NavController, user: User) {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -73,6 +77,7 @@ fun UserFound(navController: NavController, user: User) {
     }
 }
 
+//Create own textarea where you can put label and text
 @Composable
 fun TextAreaWithLabel(label: String, text: String) {
     Column(modifier = Modifier
@@ -88,6 +93,7 @@ fun TextAreaWithLabel(label: String, text: String) {
         Text(text, modifier = Modifier.padding(2.dp))
     }
 }
+
 
 @Composable
 fun IconButton(icon: ImageVector, description: String, modifier: Modifier, action: () -> Unit) {

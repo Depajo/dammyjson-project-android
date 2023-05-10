@@ -2,6 +2,7 @@ package fi.tuni.dammyjson
 
 import FetchTools
 import User
+import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,6 +29,7 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun Edit(user: User, navController: NavController) {
+    // Use the FetchTools class to fetch data from the API.
     val fetch = FetchTools()
     var firstName by remember { mutableStateOf(user.firstName) }
     var lastName by remember { mutableStateOf(user.lastName) }
@@ -78,7 +80,7 @@ fun Edit(user: User, navController: NavController) {
                             ).show()
                             navController.popBackStack()
                         }
-
+                        //if something goes wrong, show a toast message.
                     }, {
                         println(it)
                         CoroutineScope(Dispatchers.Main).launch {
@@ -89,7 +91,7 @@ fun Edit(user: User, navController: NavController) {
                             ).show()
                         }
                     })
-
+                // If age is not a number, show a toast message.
                 } else {
                     CoroutineScope(Dispatchers.Main).launch {
                         Toast.makeText(

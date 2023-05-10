@@ -58,9 +58,7 @@ fun CreateUserList(navController: NavController) {
         println(it)
     })
     if (userData.isEmpty()) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-        }
+        ProcessView(navController)
     } else {
         UsersList(users = userData, navController)
     }

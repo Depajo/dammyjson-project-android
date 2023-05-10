@@ -9,6 +9,8 @@ import com.fasterxml.jackson.module.kotlin.readValue
 
 
 class FetchTools {
+
+    // This function is used to get data from the server
     fun getData(url: String, response: (String) -> Unit, failure: (IOException) -> Unit) {
         val client = OkHttpClient()
         val request = Request.Builder().url(url).build()
@@ -26,6 +28,7 @@ class FetchTools {
         })
     }
 
+    // This function is used to post data to the server
     fun postData(url: String, json: String,
                  response: (String) -> Unit, failure: (IOException) -> Unit) {
         val client = OkHttpClient()
@@ -45,20 +48,19 @@ class FetchTools {
         })
     }
 
+    // This function is parsing the data from the server to a list of User objects
     fun parseDatatoObject(jsonData: String): List<User> {
-        //Log.d("test", jsonData)
         val objectMapper = ObjectMapper().registerModule(KotlinModule())
         return objectMapper.readValue<Users>(jsonData).users
     }
 
+    // This function is parsing the data from the server to a single User object
     fun parseOneUserData(jsonData: String): User {
-        Log.d("testUser", jsonData.toString())
         val objectMapper = ObjectMapper().registerModule(KotlinModule())
-        val d = objectMapper.readValue<User>(jsonData)
-        Log.d("testUser", d.toString())
-        return d
+        return objectMapper.readValue<User>(jsonData)
     }
 
+    // This function is parsing the object to json format to be sent to the server
     fun parseUserDataToJson(user: User): String {
         val objectMapper = ObjectMapper()
         val userJson = objectMapper.writeValueAsString(user)

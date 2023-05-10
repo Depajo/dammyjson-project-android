@@ -4,8 +4,12 @@ import FetchTools
 import User
 import android.annotation.SuppressLint
 import android.widget.Toast
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.runtime.mutableStateOf
@@ -20,17 +24,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 
 
 @Composable
 fun Edit(user: User, navController: NavController) {
     // Use the FetchTools class to fetch data from the API.
-    val fetch = FetchTools()
     var firstName by remember { mutableStateOf(user.firstName) }
     var lastName by remember { mutableStateOf(user.lastName) }
     var age by remember { mutableStateOf(user.age.toString()) }
@@ -40,72 +46,71 @@ fun Edit(user: User, navController: NavController) {
     var password by remember { mutableStateOf(user.password) }
 
     Column {
-        Box {
+        Box(Modifier.fillMaxWidth()) {
+            // Code for the back button.
             IconButton(Icons.Filled.ArrowBack, "Back", Modifier.align(Alignment.TopStart)) {
                 navController.popBackStack()
             }
+            // If input is valid, show the button and allow the user to edit the user.
+            if (age.isDigitsOnly() && age.isNotBlank()) {
+                val user = User(0, firstName, lastName, age.toInt(), email, phone, username, password)
+                EditUserButton(user, Modifier.align(alignment = Alignment.TopEnd), navController)
+            }
+
+            Text("Add User",
+                fontFamily = FontFamily.SansSerif,
+                fontSize = 30.sp,
+                modifier = Modifier.align(Alignment.Center)
+            )
         }
 
-        Text("Edit User", fontFamily = FontFamily.SansSerif, fontSize = 30.sp)
         MyTextField(placeholder = "First Name", firstName, KeyboardType.Text) { firstName = it }
-        MyTextField(placeholder = "Last Name", lastName, KeyboardType.Text) { lastName = it }
-        MyTextField(placeholder = "Age", age, KeyboardType.Number) { age = it }
+        MyTextField(placeholder = "Last Name", lastName, KeyboardType.Text) { lastName = it}
+        MyTextField(placeholder = "Age", age, KeyboardType.Number) { age = it}
         MyTextField(placeholder = "Email", email, KeyboardType.Email) { email = it }
         MyTextField(placeholder = "Phone", phone, KeyboardType.Phone) { phone = it }
         MyTextField(placeholder = "Username", username, KeyboardType.Text) { username = it }
         MyTextField(placeholder = "Password", password, KeyboardType.Password) { password = it }
         val context = LocalContext.current
-        Button(
-            onClick = {
-                if (age.isDigitsOnly() && age.isNotBlank()) {
-                    val user = User(
-                        0,
-                        firstName,
-                        lastName,
-                        age.toInt(),
-                        email,
-                        phone,
-                        username,
-                        password
-                    )
-                    val userJson = fetch.parseUserDataToJson(user)
-                    fetch.postData("https://dummyjson.com/users/add", userJson, {
-                        println(it)
-                        //This code launches a coroutine on the main thread and shows a toast message.
-                        CoroutineScope(Dispatchers.Main).launch {
-                            Toast.makeText(
-                                context,
-                                "${firstName} ${lastName} addition successful!",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            navController.popBackStack()
-                        }
-                        //if something goes wrong, show a toast message.
-                    }, {
-                        println(it)
-                        CoroutineScope(Dispatchers.Main).launch {
-                            Toast.makeText(
-                                context,
-                                "Something wrong, try again!",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    })
-                // If age is not a number, show a toast message.
-                } else {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        Toast.makeText(
-                            context,
-                            "Something wrong, try again!",
-                            Toast.LENGTH_SHORT
-                        ).show()
 
-                    }
-                }
-            }
-        ) {
-            Text("Add item")
-        }
+
     }
+}
 
+@Composable
+fun EditUserButton(user: User, modifier: Modifier, navController: NavController) {
+    val fetch = FetchTools()
+    val context = LocalContext.current
+    Button(
+        onClick = {
+            val userJson = fetch.parseUserDataToJson(user)
+            fetch.postData("https://dummyjson.com/users/add", userJson, {
+                println(it)
+                //Code launch a coroutine on the main thread and shows a toast message.
+                CoroutineScope(Dispatchers.Main).launch {
+                    Toast.makeText(
+                        context,
+                        "${user.firstName} ${user.lastName} addition successful!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    navController.popBackStack()
+                }
+
+            }, {
+                println(it)
+                CoroutineScope(Dispatchers.Main).launch {
+                    Toast.makeText(
+                        context,
+                        "Something wrong, try again!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            })
+        },
+        modifier = modifier.padding(10.dp),
+        colors = ButtonDefaults.buttonColors(if (isSystemInDarkTheme()) Color.White else Color.Black),
+        shape = RoundedCornerShape(30.dp)
+    ) {
+        Text("Save",  color = if (isSystemInDarkTheme()) Color.Black else Color.White)
+    }
 }

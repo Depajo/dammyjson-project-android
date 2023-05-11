@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
                         composable("EditUser/{userId}") {
                             // Get the userId from the arguments
                             val userId: String? = it.arguments?.getString("userId")
-                            // Convert the userId to an Int and pass it to the EditOrAddScreenSelector
+                            // Convert the userId to an Int and pass it to the GetEditData function
                             GetEditData(navController, userId!!.toInt())
                         }
                         composable("UserScreen/{userId}") {

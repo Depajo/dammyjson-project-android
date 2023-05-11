@@ -40,7 +40,7 @@ fun MainScreen(navControlle: NavController) {
 fun CreateUserList(navController: NavController) {
     val fetch = FetchTools()
     var userData by remember { mutableStateOf(listOf<User>()) }
-    fetch.getData(url = "https://dummyjson.com/users", response = {
+    fetch.getData(url = "https://dummyjson.com/users?limit=0", response = {
         Log.d("test", it)
         userData = fetch.parseAllUserDataToObject(it) ?: emptyList()
     }, failure = {
@@ -102,8 +102,8 @@ fun SearchField() {
                 RoundedCornerShape(25.dp)
             ),
         colors = TextFieldDefaults.textFieldColors(
-            focusedIndicatorColor = Color.Transparent, // Aseta viivan väriksi läpinäkyvä
-            unfocusedIndicatorColor = Color.Transparent // Aseta viivan väriksi läpinäkyvä
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent
         )
 
 

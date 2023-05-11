@@ -43,7 +43,7 @@ fun UserFound(navController: NavController, user: User) {
             navController.popBackStack()
         }
         IconButton(Icons.Filled.Edit, "Back", Modifier.align(Alignment.TopEnd) ) {
-            navController.navigate("AddUser/${user.id}")
+            navController.navigate("EditUser/${user.id}")
         }
         Column(modifier = Modifier
             .align(Alignment.Center)

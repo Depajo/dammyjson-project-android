@@ -75,14 +75,33 @@ fun Edit(user: User, navController: NavController) {
         DeleteUserButton(user, Modifier.align(Alignment.CenterHorizontally), navController)
     }
 }
+
+@Composable
+fun GetEditData(navController: NavController, userId: Int) {
+    var data: User? by remember { mutableStateOf(null) }
+    val fetch = FetchTools()
+
+
+    fetch.getData("https://dummyjson.com/users/${userId}", {
+        println(it)
+        data = fetch.parseOneUserData(it)
+    }, {
+        println(it)
+    })
+
+    if (data == null) {
+        ProcessView(navController)
+    } else {
+        // If data is not null, then we have the data for the user we are editing
+        data?.let { Edit(it, navController) }
+    }
+
+}
+
 @Composable
 fun DeleteUserButton(user: User, modifier: Modifier, navController: NavController) {
-
     Button(
-        onClick = {
-                  navController.navigate("home")
-
-        },
+        onClick = { navController.navigate("home") },
         modifier = modifier.padding(10.dp),
         colors = ButtonDefaults.buttonColors(Color.Transparent),
         elevation = null,

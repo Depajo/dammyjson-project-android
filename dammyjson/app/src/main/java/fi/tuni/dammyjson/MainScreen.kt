@@ -113,7 +113,7 @@ fun SearchField() {
 @Composable
 fun AddButton(navControlle: NavController, modifier: Modifier = Modifier) {
     FloatingActionButton(
-        onClick = { navControlle.navigate("AddUser/${null}") },
+        onClick = { navControlle.navigate("AddUser") },
         modifier = modifier
     ) {
         Icon(Icons.Filled.Add, contentDescription = "Add Button")

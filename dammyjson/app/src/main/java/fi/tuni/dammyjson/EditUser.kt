@@ -99,8 +99,33 @@ fun GetEditData(navController: NavController, userId: Int) {
 
 @Composable
 fun DeleteUserButton(user: User, modifier: Modifier, navController: NavController) {
+    val context = LocalContext.current
     Button(
-        onClick = { navController.navigate("home") },
+        onClick = {
+            val fetch = FetchTools()
+            fetch.deleteData("https://dummyjson.com/users/${user.id}", {
+                println(it)
+                //Code launch a coroutine on the main thread and shows a toast message.
+                CoroutineScope(Dispatchers.Main).launch {
+                    Toast.makeText(
+                        context,
+                        "${user.firstName} ${user.lastName} deletion successful!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    navController.navigate("home")
+                }
+
+            }, {
+                println(it)
+                CoroutineScope(Dispatchers.Main).launch {
+                    Toast.makeText(
+                        context,
+                        "Something wrong, try again!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            })
+        },
         modifier = modifier.padding(10.dp),
         colors = ButtonDefaults.buttonColors(Color.Transparent),
         elevation = null,
@@ -117,13 +142,13 @@ fun EditUserButton(user: User, modifier: Modifier, navController: NavController)
     Button(
         onClick = {
             val userJson = fetch.parseUserDataToJson(user)
-            fetch.postData("https://dummyjson.com/users/add", userJson, {
+            fetch.putData("https://dummyjson.com/users/${user.id}", userJson, {
                 println(it)
                 //Code launch a coroutine on the main thread and shows a toast message.
                 CoroutineScope(Dispatchers.Main).launch {
                     Toast.makeText(
                         context,
-                        "${user.firstName} ${user.lastName} addition successful!",
+                        "${user.firstName} ${user.lastName} edition successful!",
                         Toast.LENGTH_SHORT
                     ).show()
                     navController.popBackStack()

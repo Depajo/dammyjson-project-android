@@ -22,13 +22,18 @@ import androidx.navigation.NavController
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun MainScreen(navControlle: NavController) {
+    var search by remember { mutableStateOf("") }
     Box {
         Column {
-            SearchField()
-            CreateUserList(navControlle)
+            SearchField() {
+                search = it
+            }
+            CreateUserList(search, navControlle)
+
         }
         AddButton(navControlle, modifier = Modifier
             .padding(bottom = 20.dp, end = 20.dp)
@@ -37,19 +42,33 @@ fun MainScreen(navControlle: NavController) {
 }
 
 @Composable
-fun CreateUserList(navController: NavController) {
+fun CreateUserList(search: String, navController: NavController) {
     val fetch = FetchTools()
     var userData by remember { mutableStateOf(listOf<User>()) }
-    fetch.getData(url = "https://dummyjson.com/users?limit=0", response = {
+    var url = "https://dummyjson.com/users?limit=0"
+    if (search.isNotEmpty()) {
+        url = "https://dummyjson.com/users/search?q=$search"
+    }
+    fetch.getData(url = url, response = {
         Log.d("test", it)
         userData = fetch.parseAllUserDataToObject(it) ?: emptyList()
     }, failure = {
         println(it)
     })
-    if (userData.isEmpty()) {
-        ProcessView(navController)
-    } else {
-        UsersList(users = userData, navController)
+    Box {
+        if (userData.isEmpty() && search.isEmpty()) {
+            ProcessView(navController)
+        } else if (userData.isEmpty() && search.isNotEmpty()) {
+            Text(
+                "No results found",
+                modifier = Modifier.fillMaxSize(),
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
+            )
+        } else {
+            UsersList(users = userData, navController)
+        }
     }
 }
 
@@ -89,11 +108,14 @@ fun UsersList(users: List<User>, navController: NavController) {
 }
 
 @Composable
-fun SearchField() {
+fun SearchField(callback: (String) -> Unit) {
     var text by remember { mutableStateOf("") }
     TextField(
         value = text,
-        onValueChange = { newText -> text = newText},
+        onValueChange = {
+            text = it
+            callback(it)
+        },
         placeholder = { Text("Hae") },
         modifier = Modifier
             .fillMaxWidth()

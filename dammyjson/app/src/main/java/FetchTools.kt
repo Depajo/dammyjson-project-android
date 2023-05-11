@@ -48,6 +48,44 @@ class FetchTools {
         })
     }
 
+    // This function is used to put data to the server
+    fun putData(url: String, json: String,
+                 response: (String) -> Unit, failure: (IOException) -> Unit) {
+        val client = OkHttpClient()
+        val reqBody = json.toRequestBody("application/json; charset=utf-8".toMediaType())
+        val request = Request.Builder().url(url).put(reqBody).build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                failure(e)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                response.body?.string()?.let { responseBody ->
+                    response(responseBody)
+                }
+            }
+        })
+    }
+
+    // This function is used to delete data from the server
+    fun deleteData(url: String, response: (String) -> Unit, failure: (IOException) -> Unit) {
+        val client = OkHttpClient()
+        val request = Request.Builder().url(url).delete().build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                failure(e)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                response.body?.string()?.let { responseBody ->
+                    response(responseBody)
+                }
+            }
+        })
+    }
+
     // This function is parsing the data from the server to a list of User objects
     fun parseAllUserDataToObject(jsonData: String): List<User> {
         val objectMapper = ObjectMapper().registerModule(KotlinModule())

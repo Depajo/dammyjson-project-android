@@ -42,7 +42,7 @@ fun CreateUserList(navController: NavController) {
     var userData by remember { mutableStateOf(listOf<User>()) }
     fetch.getData(url = "https://dummyjson.com/users", response = {
         Log.d("test", it)
-        userData = fetch.parseDatatoObject(it) ?: emptyList()
+        userData = fetch.parseAllUserDataToObject(it) ?: emptyList()
     }, failure = {
         println(it)
     })

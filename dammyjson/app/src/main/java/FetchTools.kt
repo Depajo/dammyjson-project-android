@@ -49,13 +49,13 @@ class FetchTools {
     }
 
     // This function is parsing the data from the server to a list of User objects
-    fun parseDatatoObject(jsonData: String): List<User> {
+    fun parseAllUserDataToObject(jsonData: String): List<User> {
         val objectMapper = ObjectMapper().registerModule(KotlinModule())
         return objectMapper.readValue<Users>(jsonData).users
     }
 
     // This function is parsing the data from the server to a single User object
-    fun parseOneUserData(jsonData: String): User {
+    fun parseOneUserDataToObject(jsonData: String): User {
         val objectMapper = ObjectMapper().registerModule(KotlinModule())
         return objectMapper.readValue<User>(jsonData)
     }

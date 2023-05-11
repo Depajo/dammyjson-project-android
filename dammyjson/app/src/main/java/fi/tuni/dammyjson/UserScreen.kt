@@ -22,7 +22,7 @@ fun UserScreen(navController: NavController, userId: Int? = null) {
     if (userId != null) {
         fetch.getData("https://dummyjson.com/users/${userId}", {
             println(it)
-            data = fetch.parseOneUserData(it)
+            data = fetch.parseOneUserDataToObject(it)
         }, {
             println(it)
         })

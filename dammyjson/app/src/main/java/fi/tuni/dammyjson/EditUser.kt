@@ -2,7 +2,6 @@ package fi.tuni.dammyjson
 
 import FetchTools
 import User
-import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -84,7 +83,7 @@ fun GetEditData(navController: NavController, userId: Int) {
 
     fetch.getData("https://dummyjson.com/users/${userId}", {
         println(it)
-        data = fetch.parseOneUserData(it)
+        data = fetch.parseOneUserDataToObject(it)
     }, {
         println(it)
     })

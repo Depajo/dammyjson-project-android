@@ -13,6 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
+/**
+ * UserScreen composable function. It is used to show the user data.
+ * It fetches the data from the API. If the userId is not null, it will fetch the user with that id.
+ *
+ * @param navController is used to navigate to the edit user screen.
+ * @param userId is the id of the user that is fetched from the API.
+ *
+ * @see UserFound
+ */
 @Composable
 fun UserScreen(navController: NavController, userId: Int? = null) {
     // Fetch data from server
@@ -36,6 +45,14 @@ fun UserScreen(navController: NavController, userId: Int? = null) {
     }
 }
 
+/**
+ * UserFound is a composable function that shows the user data.
+ *
+ * @param navController is used to navigate to the edit user screen.
+ * @param user is the user data that is shown.
+ *
+ * @see TextAreaWithLabel
+ */
 @Composable
 fun UserFound(navController: NavController, user: User) {
     Box(modifier = Modifier.fillMaxSize()) {

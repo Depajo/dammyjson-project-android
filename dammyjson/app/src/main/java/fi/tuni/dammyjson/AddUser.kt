@@ -30,7 +30,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
-
+/**
+ * Add a user to the database. This function is called when the user presses the plus button.
+ *
+ *
+ * @param navController The NavController used to navigate between composables.
+ */
 @Composable
 fun Add(navController: NavController) {
     var firstName by remember { mutableStateOf("") }
@@ -71,6 +76,14 @@ fun Add(navController: NavController) {
     }
 }
 
+/**
+ * A text field that takes a placeholder, value, keyboard type and a function to update the value.
+ *
+ * @param placeholder The placeholder text.
+ * @param value The value of the text field.
+ * @param keyboardType The keyboard type of the text field.
+ * @param onValueChange The function to update the value.
+ */
 @Composable
 fun AddUserButton(user: User, modifier: Modifier, navController: NavController) {
     val fetch = FetchTools()

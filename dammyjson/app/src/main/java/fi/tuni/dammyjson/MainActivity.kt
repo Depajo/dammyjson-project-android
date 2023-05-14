@@ -20,6 +20,15 @@ import androidx.navigation.compose.rememberNavController
 
 import fi.tuni.dammyjson.ui.theme.DammyjsonTheme
 
+/**
+ * MainActivity is the main activity of the application.
+ * It is used to navigate between the screens.
+ *
+ * @see MainScreen
+ * @see Add
+ * @see GetEditData
+ * @see UserScreen
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -18,6 +18,14 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
+/**
+ * IconButton is a composable function that creates a button with an icon.
+ *
+ * @param icon is the icon that is shown in the button.
+ * @param description is the description of the icon.
+ * @param modifier is used to modify the button.
+ * @param action is the action that is performed when the button is clicked.
+ */
 @Composable
 fun IconButton(icon: ImageVector, description: String, modifier: Modifier, action: () -> Unit) {
     FloatingActionButton(
@@ -35,6 +43,13 @@ fun IconButton(icon: ImageVector, description: String, modifier: Modifier, actio
     }
 }
 
+
+/**
+ * TextAreaView is a composable function that creates a text area with a label.
+ *
+ * @param label is the label of the text area.
+ * @param text is the text that is shown in the text area.
+ */
 //Create own textarea where you can put label and text
 @Composable
 fun TextAreaWithLabel(label: String, text: String) {
@@ -52,6 +67,12 @@ fun TextAreaWithLabel(label: String, text: String) {
     }
 }
 
+/**
+ * ProcessView is a composable function that creates a view that is shown when the app is processing
+ * something. You can use it to show a loading indicator.
+ *
+ * @param navController is used to navigate to the user screen.
+ */
 @Composable
 fun ProcessView(navController: NavController) {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -61,6 +82,14 @@ fun ProcessView(navController: NavController) {
     }
 }
 
+/**
+ * MyTextField is a composable function that creates a text field.
+ *
+ * @param placeholder is the placeholder of the text field.
+ * @param value is the value of the text field.
+ * @param keyboardType is the type of the keyboard that is shown when the text field is clicked.
+ * @param onValueChange is the action that is performed when the value of the text field is changed.
+ */
 @Composable
 fun MyTextField(placeholder: String, value: String, keyboardType: KeyboardType, onValueChange: (String) -> Unit) {
     TextField(

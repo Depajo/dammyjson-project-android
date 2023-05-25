@@ -91,7 +91,7 @@ fun ProcessView(navController: NavController) {
  * @param onValueChange is the action that is performed when the value of the text field is changed.
  */
 @Composable
-fun MyTextField(placeholder: String, value: String, keyboardType: KeyboardType, onValueChange: (String) -> Unit) {
+fun MyTextField(placeholder: String, value: String, validate: Boolean, keyboardType: KeyboardType, onValueChange: (String) -> Unit) {
     TextField(
         value = value,
         onValueChange = { onValueChange(it) },
@@ -99,6 +99,7 @@ fun MyTextField(placeholder: String, value: String, keyboardType: KeyboardType, 
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 10.dp),
+        isError = !validate,
 
         singleLine = true,
         maxLines = 1,

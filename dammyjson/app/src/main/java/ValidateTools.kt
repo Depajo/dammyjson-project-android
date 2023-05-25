@@ -34,7 +34,7 @@ class ValidateTools {
     }
 
     fun isAgeValid(age: String): Boolean {
-        return age.isNotEmpty() && age.toInt() > 0 && age.toInt() < 120 && age.toIntOrNull() != null
+        return age.isNotEmpty() && age.toIntOrNull() != null && age.toInt() > 0 && age.toInt() < 120
     }
 
     fun isUserValid(user: User): Boolean {

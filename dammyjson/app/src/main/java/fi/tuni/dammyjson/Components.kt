@@ -94,6 +94,7 @@ fun ProcessView(navController: NavController) {
 fun MyTextField(placeholder: String, value: String, validate: Boolean, keyboardType: KeyboardType, onValueChange: (String) -> Unit) {
     TextField(
         value = value,
+        label = { Text(placeholder) },
         onValueChange = { onValueChange(it) },
         placeholder = { Text(placeholder) },
         modifier = Modifier

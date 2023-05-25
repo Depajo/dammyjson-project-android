@@ -163,13 +163,13 @@ fun SearchField(callback: (String) -> Unit) {
  * AddButton is a composable that creates a floating action button. It also navigates to the
  * AddUser screen when the button is clicked.
  *
- * @param navControlle is a NavController that is used to navigate to the AddUser screen.
+ * @param navController is a NavController that is used to navigate to the AddUser screen.
  * @param modifier is a Modifier that is used to modify the floating action button.
  */
 @Composable
-fun AddButton(navControlle: NavController, modifier: Modifier = Modifier) {
+fun AddButton(navController: NavController, modifier: Modifier = Modifier) {
     FloatingActionButton(
-        onClick = { navControlle.navigate("AddUser") },
+        onClick = { navController.navigate("AddUser") },
         modifier = modifier
     ) {
         Icon(Icons.Filled.Add, contentDescription = "Add Button")

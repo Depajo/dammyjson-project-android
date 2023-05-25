@@ -42,7 +42,7 @@ fun Edit(user: User, navController: NavController) {
     // Use the FetchTools class to fetch data from the API.
     var firstName by remember { mutableStateOf(user.firstName) }
     var lastName by remember { mutableStateOf(user.lastName) }
-    var age by remember { mutableStateOf(user.age.toString()) }
+    var age: String by remember { mutableStateOf(user.age) }
     var email by remember { mutableStateOf(user.email) }
     var phone by remember { mutableStateOf(user.phone) }
     var username by remember { mutableStateOf(user.username) }
@@ -55,7 +55,7 @@ fun Edit(user: User, navController: NavController) {
                 navController.popBackStack()
             }
             // If input is valid, show the button and allow the user to edit the user.
-            if (validateTools.isUserValid(User(0, firstName, lastName, age, email, phone, username, password))) {
+            if (validateTools.isUserValid(User(user.id, firstName, lastName, age, email, phone, username, password))) {
                 val user = User(0, firstName, lastName, age, email, phone, username, password)
                 EditUserButton(user, Modifier.align(alignment = Alignment.TopEnd), navController)
             }

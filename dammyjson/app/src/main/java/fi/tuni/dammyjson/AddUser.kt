@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.runtime.mutableStateOf
@@ -30,7 +32,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import java.text.Normalizer
 
@@ -50,6 +54,7 @@ fun Add(navController: NavController) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var validateTools = ValidateTools()
+
     Column {
         Box(Modifier.fillMaxWidth()) {
             // Code for the back button.
@@ -70,48 +75,58 @@ fun Add(navController: NavController) {
         }
         Spacer(modifier = Modifier.height(20.dp))
         // Show the text fields.
-        MyTextField(
-            "First Name",
-            firstName,
-            validateTools.isFirstNameValid(firstName),
-            KeyboardType.Text
-        ) { firstName = it }
-        MyTextField(
-            "Last Name",
-            lastName,
-            validateTools.isLastNameValid(lastName),
-            KeyboardType.Text
-        ) { lastName = it }
-        MyTextField(
-            "Age",
-            age,
-            validateTools.isAgeValid(age),
-            KeyboardType.Number) { age = it }
-        MyTextField(
-            "Email",
-            email,
-            validateTools.isEmailValid(email),
-            KeyboardType.Email
-        ) { email = it }
-        MyTextField(
-            "Phone",
-            phone,
-            validateTools.isPhoneValid(phone),
-            KeyboardType.Phone
-        ) { phone = it }
-        MyTextField(
-            "Username",
-            username,
-            validateTools.isUsernameValid(username),
-            KeyboardType.Text
-        ) { username = it }
-        MyTextField(
-            "Password",
-            password,
-            validateTools.isPasswordValid(password),
-            KeyboardType.Password
-        ) { password = it }
 
+
+
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+        ) {
+            MyTextField(
+                "First Name",
+                firstName,
+                validateTools.isFirstNameValid(firstName),
+                KeyboardType.Text
+            ) { firstName = it }
+            MyTextField(
+                "Last Name",
+                lastName,
+                validateTools.isLastNameValid(lastName),
+                KeyboardType.Text
+            ) { lastName = it }
+            MyTextField(
+                "Age",
+                age,
+                validateTools.isAgeValid(age),
+                KeyboardType.Number
+            ) { age = it }
+            MyTextField(
+                "Email",
+                email,
+                validateTools.isEmailValid(email),
+                KeyboardType.Email
+            ) { email = it }
+            MyTextField(
+                "Phone",
+                phone,
+                validateTools.isPhoneValid(phone),
+                KeyboardType.Phone
+            ) { phone = it }
+            MyTextField(
+                "Username",
+                username,
+                validateTools.isUsernameValid(username),
+                KeyboardType.Text
+            ) { username = it }
+            MyTextField(
+                "Password",
+                password,
+                validateTools.isPasswordValid(password),
+                KeyboardType.Password
+            ) { password = it }
+        }
     }
 }
 

@@ -75,10 +75,6 @@ fun Add(navController: NavController) {
         }
         Spacer(modifier = Modifier.height(20.dp))
         // Show the text fields.
-
-
-
-
         Column(
             modifier = Modifier
                 .fillMaxSize()

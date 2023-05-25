@@ -5,11 +5,10 @@ import User
 import ValidateTools
 import android.widget.Toast
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.runtime.mutableStateOf
@@ -49,7 +48,7 @@ fun Edit(user: User, navController: NavController) {
     var username by remember { mutableStateOf(user.username) }
     var password by remember { mutableStateOf(user.password) }
     var validateTools = ValidateTools()
-    Column {
+    Column(Modifier.verticalScroll(rememberScrollState(), reverseScrolling = true)) {
         Box(Modifier.fillMaxWidth()) {
             // Code for the back button.
             IconButton(Icons.Filled.ArrowBack, "Back", Modifier.align(Alignment.TopStart)) {
@@ -68,14 +67,46 @@ fun Edit(user: User, navController: NavController) {
             )
         }
 
-        MyTextField("First Name", firstName, validateTools.isFirstNameValid(firstName), KeyboardType.Text) { firstName = it }
-        MyTextField("Last Name", lastName, validateTools.isLastNameValid(lastName), KeyboardType.Text) { lastName = it}
-        MyTextField("Age", age, validateTools.isAgeValid(age), KeyboardType.Number) { age = it}
-        MyTextField("Email", email, validateTools.isEmailValid(email), KeyboardType.Email) { email = it }
-        MyTextField("Phone", phone, validateTools.isPhoneValid(phone), KeyboardType.Phone) { phone = it }
-        MyTextField("Username", username, validateTools.isUsernameValid(username), KeyboardType.Text) { username = it }
-        MyTextField("Password", password, validateTools.isPasswordValid(password), KeyboardType.Password) { password = it }
+        Spacer(modifier = Modifier.height(20.dp))
 
+        MyTextField(
+            "First Name",
+            firstName,
+            validateTools.isFirstNameValid(firstName),
+            KeyboardType.Text) { firstName = it }
+        MyTextField(
+            "Last Name",
+            lastName,
+            validateTools.isLastNameValid(lastName),
+            KeyboardType.Text) { lastName = it}
+        MyTextField(
+            "Age",
+            age,
+            validateTools.isAgeValid(age),
+            KeyboardType.Number) { age = it}
+        MyTextField(
+            "Email",
+            email,
+            validateTools.isEmailValid(email),
+            KeyboardType.Email) { email = it }
+        MyTextField(
+            "Phone",
+            phone,
+            validateTools.isPhoneValid(phone),
+            KeyboardType.Phone) { phone = it }
+        MyTextField(
+            "Username",
+            username,
+            validateTools.isUsernameValid(username),
+            KeyboardType.Text) { username = it }
+        MyTextField(
+            "Password",
+            password,
+            validateTools.isPasswordValid(password),
+            KeyboardType.Password) { password = it }
+
+        Spacer(modifier = Modifier.height(20.dp))
+        // If input is valid, show the button and allow the user to edit the user.
         DeleteUserButton(user, Modifier.align(Alignment.CenterHorizontally), navController)
     }
 }

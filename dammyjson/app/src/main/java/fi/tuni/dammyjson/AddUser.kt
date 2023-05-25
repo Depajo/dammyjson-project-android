@@ -3,6 +3,8 @@ package fi.tuni.dammyjson
 import FetchTools
 import User
 import ValidateTools
+import android.widget.ScrollView
+import android.widget.Scroller
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -30,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import java.text.Normalizer
 
 /**
  * Add a user to the database. This function is called when the user presses the plus button.
@@ -65,15 +68,49 @@ fun Add(navController: NavController) {
                 modifier = Modifier.align(Alignment.Center)
             )
         }
-
-        MyTextField("First Name", firstName, validateTools.isFirstNameValid(firstName), KeyboardType.Text) { firstName = it }
-        MyTextField("Last Name", lastName, validateTools.isLastNameValid(lastName), KeyboardType.Text) { lastName = it}
-        MyTextField("Age", age, validateTools.isAgeValid(age), KeyboardType.Number) { age = it}
-        MyTextField("Email", email, validateTools.isEmailValid(email), KeyboardType.Email) { email = it }
-        MyTextField("Phone", phone, validateTools.isPhoneValid(phone), KeyboardType.Phone) { phone = it }
-        MyTextField("Username", username, validateTools.isUsernameValid(username), KeyboardType.Text) { username = it }
-        MyTextField("Password", password, validateTools.isPasswordValid(password), KeyboardType.Password) { password = it }
-
+        Spacer(modifier = Modifier.height(20.dp))
+        // Show the text fields.
+        MyTextField(
+            "First Name",
+            firstName,
+            validateTools.isFirstNameValid(firstName),
+            KeyboardType.Text
+        ) { firstName = it }
+        MyTextField(
+            "Last Name",
+            lastName,
+            validateTools.isLastNameValid(lastName),
+            KeyboardType.Text
+        ) { lastName = it }
+        MyTextField(
+            "Age",
+            age,
+            validateTools.isAgeValid(age),
+            KeyboardType.Number) { age = it }
+        MyTextField(
+            "Email",
+            email,
+            validateTools.isEmailValid(email),
+            KeyboardType.Email
+        ) { email = it }
+        MyTextField(
+            "Phone",
+            phone,
+            validateTools.isPhoneValid(phone),
+            KeyboardType.Phone
+        ) { phone = it }
+        MyTextField(
+            "Username",
+            username,
+            validateTools.isUsernameValid(username),
+            KeyboardType.Text
+        ) { username = it }
+        MyTextField(
+            "Password",
+            password,
+            validateTools.isPasswordValid(password),
+            KeyboardType.Password
+        ) { password = it }
 
     }
 }

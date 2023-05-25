@@ -2,6 +2,7 @@ package fi.tuni.dammyjson
 
 import FetchTools
 import User
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -55,6 +56,7 @@ fun UserScreen(navController: NavController, userId: Int? = null) {
  */
 @Composable
 fun UserFound(navController: NavController, user: User) {
+    Log.d("UserScreen", "UserFound: ${user}")
     Box(modifier = Modifier.fillMaxSize()) {
         IconButton(Icons.Filled.ArrowBack, "Back", Modifier.align(Alignment.TopStart)) {
             navController.popBackStack()

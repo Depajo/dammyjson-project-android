@@ -3,6 +3,7 @@ package fi.tuni.dammyjson
 import FetchTools
 import User
 import ValidateTools
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -40,6 +41,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun Edit(user: User, navController: NavController) {
     // Use the FetchTools class to fetch data from the API.
+    var id by remember { mutableStateOf(user.id) }
     var firstName by remember { mutableStateOf(user.firstName) }
     var lastName by remember { mutableStateOf(user.lastName) }
     var age: String by remember { mutableStateOf(user.age) }
@@ -49,6 +51,7 @@ fun Edit(user: User, navController: NavController) {
     var password by remember { mutableStateOf(user.password) }
     var validateTools = ValidateTools()
     Column {
+        Log.d("EditUser", "Editing User: $user")
         Box(Modifier.fillMaxWidth()) {
             // Code for the back button.
             IconButton(Icons.Filled.ArrowBack, "Back", Modifier.align(Alignment.TopStart)) {
@@ -56,7 +59,7 @@ fun Edit(user: User, navController: NavController) {
             }
             // If input is valid, show the button and allow the user to edit the user.
             if (validateTools.isUserValid(User(user.id, firstName, lastName, age, email, phone, username, password))) {
-                val user = User(0, firstName, lastName, age, email, phone, username, password)
+                val user = User(id, firstName, lastName, age, email, phone, username, password)
                 EditUserButton(user, Modifier.align(alignment = Alignment.TopEnd), navController)
             } else {
                 EditUserButton(user, Modifier.align(alignment = Alignment.TopEnd), navController, enabled = false)
@@ -137,10 +140,10 @@ fun GetEditData(navController: NavController, userId: Int) {
 
 
     fetch.getData("https://dummyjson.com/users/${userId}", {
-        println(it)
+        Log.d("EditUser", "Success: $it")
         data = fetch.parseOneUserDataToObject(it)
     }, {
-        println(it)
+        Log.d("EditUser", "Error: $it")
     })
 
     if (data == null) {
@@ -167,7 +170,7 @@ fun DeleteUserButton(user: User, modifier: Modifier, navController: NavControlle
         onClick = {
             val fetch = FetchTools()
             fetch.deleteData("https://dummyjson.com/users/${user.id}", {
-                println(it)
+                Log.d("DeleteUserButton", "Success: $it")
                 //Code launch a coroutine on the main thread and shows a toast message.
                 CoroutineScope(Dispatchers.Main).launch {
                     Toast.makeText(
@@ -179,7 +182,7 @@ fun DeleteUserButton(user: User, modifier: Modifier, navController: NavControlle
                 }
 
             }, {
-                println(it)
+                Log.d("DeleteUserButton", "Error: $it")
                 CoroutineScope(Dispatchers.Main).launch {
                     Toast.makeText(
                         context,
@@ -217,7 +220,7 @@ fun EditUserButton(user: User, modifier: Modifier, navController: NavController,
         onClick = {
             val userJson = fetch.parseUserDataToJson(user)
             fetch.putData("https://dummyjson.com/users/${user.id}", userJson, {
-                println(it)
+                Log.d("EditUserButton", "Success: $it")
                 //Code launch a coroutine on the main thread and shows a toast message.
                 CoroutineScope(Dispatchers.Main).launch {
                     Toast.makeText(
@@ -229,7 +232,7 @@ fun EditUserButton(user: User, modifier: Modifier, navController: NavController,
                 }
 
             }, {
-                println(it)
+                Log.d("EditUserButton", "Error: $it")
                 CoroutineScope(Dispatchers.Main).launch {
                     Toast.makeText(
                         context,

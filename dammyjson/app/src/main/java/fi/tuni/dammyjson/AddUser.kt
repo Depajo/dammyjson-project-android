@@ -3,6 +3,7 @@ package fi.tuni.dammyjson
 import FetchTools
 import User
 import ValidateTools
+import android.util.Log
 import android.widget.ScrollView
 import android.widget.Scroller
 import android.widget.Toast
@@ -145,7 +146,7 @@ fun AddUserButton(user: User, modifier: Modifier, navController: NavController, 
         onClick = {
             val userJson = fetch.parseUserDataToJson(user)
             fetch.postData("https://dummyjson.com/users/add", userJson, {
-                println(it)
+                Log.d("AddUserButton", "Success: $it")
                 //Code launch a coroutine on the main thread and shows a toast message.
                 CoroutineScope(Dispatchers.Main).launch {
                     Toast.makeText(
@@ -157,7 +158,7 @@ fun AddUserButton(user: User, modifier: Modifier, navController: NavController, 
                 }
 
             }, {
-                println(it)
+                Log.d("AddUserButton", "Error: $it")
                 CoroutineScope(Dispatchers.Main).launch {
                     Toast.makeText(
                         context,

@@ -164,7 +164,7 @@ class FetchTools {
     fun parseUserDataToJson(user: User): String {
         val objectMapper = ObjectMapper()
         val userJson = objectMapper.writeValueAsString(user)
-        Log.d("tojson", userJson)
+        Log.d("ParseUserToJson", userJson)
         return userJson
     }
 }

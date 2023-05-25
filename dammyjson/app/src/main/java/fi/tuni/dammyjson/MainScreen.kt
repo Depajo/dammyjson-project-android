@@ -64,10 +64,10 @@ fun CreateUserList(search: String, navController: NavController) {
         url = "https://dummyjson.com/users/search?q=$search"
     }
     fetch.getData(url = url, response = {
-        Log.d("test", it)
+        Log.d("MainScreen", "Success: $it")
         userData = fetch.parseAllUserDataToObject(it).sortedBy { it.firstName } ?: emptyList()
     }, failure = {
-        println(it)
+        Log.d("MainScreen", "Error: $it")
     })
     Box {
         if (userData.isEmpty() && search.isEmpty()) {

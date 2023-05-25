@@ -143,7 +143,7 @@ fun SearchField(callback: (String) -> Unit) {
             text = it
             callback(it)
         },
-        placeholder = { Text("Hae") },
+        placeholder = { Text("Search") },
         modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp)

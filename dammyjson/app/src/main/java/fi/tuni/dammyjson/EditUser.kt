@@ -58,6 +58,8 @@ fun Edit(user: User, navController: NavController) {
             if (validateTools.isUserValid(User(user.id, firstName, lastName, age, email, phone, username, password))) {
                 val user = User(0, firstName, lastName, age, email, phone, username, password)
                 EditUserButton(user, Modifier.align(alignment = Alignment.TopEnd), navController)
+            } else {
+                EditUserButton(user, Modifier.align(alignment = Alignment.TopEnd), navController, enabled = false)
             }
 
             Text("Edit User",
@@ -208,7 +210,7 @@ fun DeleteUserButton(user: User, modifier: Modifier, navController: NavControlle
  * @param navController The NavController used to navigate between composables.
  */
 @Composable
-fun EditUserButton(user: User, modifier: Modifier, navController: NavController) {
+fun EditUserButton(user: User, modifier: Modifier, navController: NavController, enabled: Boolean = true) {
     val fetch = FetchTools()
     val context = LocalContext.current
     Button(
@@ -239,7 +241,8 @@ fun EditUserButton(user: User, modifier: Modifier, navController: NavController)
         },
         modifier = modifier.padding(10.dp),
         colors = ButtonDefaults.buttonColors(if (isSystemInDarkTheme()) Color.White else Color.Black),
-        shape = RoundedCornerShape(30.dp)
+        shape = RoundedCornerShape(30.dp),
+        enabled = enabled,
     ) {
         Text("Save",  color = if (isSystemInDarkTheme()) Color.Black else Color.White)
     }

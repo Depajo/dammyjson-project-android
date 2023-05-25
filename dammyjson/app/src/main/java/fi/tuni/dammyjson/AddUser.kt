@@ -61,10 +61,13 @@ fun Add(navController: NavController) {
             IconButton(Icons.Filled.ArrowBack, "Back", Modifier.align(Alignment.TopStart)) {
                 navController.popBackStack()
             }
+            val user = User(0, firstName, lastName, age, email, phone, username, password)
             // If input is valid, show the button and allow the user to add the user.
             if (validateTools.isUserValid(User(0, firstName, lastName, age, email, phone, username, password))) {
-                val user = User(0, firstName, lastName, age, email, phone, username, password)
+
                 AddUserButton(user, Modifier.align(alignment = Alignment.TopEnd), navController)
+            } else {
+                AddUserButton(user, Modifier.align(alignment = Alignment.TopEnd), navController, false)
             }
 
             Text("Add User",
@@ -135,7 +138,7 @@ fun Add(navController: NavController) {
  * @param onValueChange The function to update the value.
  */
 @Composable
-fun AddUserButton(user: User, modifier: Modifier, navController: NavController) {
+fun AddUserButton(user: User, modifier: Modifier, navController: NavController, enabled: Boolean = true) {
     val fetch = FetchTools()
     val context = LocalContext.current
     Button(
@@ -166,7 +169,8 @@ fun AddUserButton(user: User, modifier: Modifier, navController: NavController) 
         },
         modifier = modifier.padding(10.dp),
         colors = ButtonDefaults.buttonColors(if (isSystemInDarkTheme()) Color.White else Color.Black),
-        shape = RoundedCornerShape(30.dp)
+        shape = RoundedCornerShape(30.dp),
+        enabled = enabled
     ) {
         Text("Save",  color = if (isSystemInDarkTheme()) Color.Black else Color.White)
     }

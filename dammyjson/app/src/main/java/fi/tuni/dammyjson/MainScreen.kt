@@ -65,7 +65,7 @@ fun CreateUserList(search: String, navController: NavController) {
     }
     fetch.getData(url = url, response = {
         Log.d("test", it)
-        userData = fetch.parseAllUserDataToObject(it) ?: emptyList()
+        userData = fetch.parseAllUserDataToObject(it).sortedBy { it.firstName } ?: emptyList()
     }, failure = {
         println(it)
     })

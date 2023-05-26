@@ -15,8 +15,7 @@ class ValidateTools {
     }
 
     fun isUsernameValid(username: String): Boolean {
-        return username.length > 3 &&
-                username.contains(Regex("^[a-zA-Z0-9_]{2,25}$"))
+        return username.contains(Regex("^[a-zA-Z0-9_]{2,25}$"))
     }
 
     fun isPhoneValid(phone: String): Boolean {

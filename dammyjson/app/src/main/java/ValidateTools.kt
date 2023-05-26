@@ -16,7 +16,7 @@ class ValidateTools {
 
     fun isUsernameValid(username: String): Boolean {
         return username.length > 3 &&
-                username.contains(Regex("[a-zA-Z]"))
+                username.contains(Regex("^[a-zA-Z0-9_]{2,25}$"))
     }
 
     fun isPhoneValid(phone: String): Boolean {
@@ -25,12 +25,12 @@ class ValidateTools {
 
     fun isFirstNameValid(firstName: String): Boolean {
         return firstName.length in 2..24 &&
-                firstName.contains(Regex("[a-zA-Z]"))
+                firstName.contains(Regex("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"))
     }
 
     fun isLastNameValid(lastName: String): Boolean {
         return lastName.length in 2..24 &&
-                lastName.contains(Regex("[a-zA-Z]"))
+                lastName.contains(Regex("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"))
     }
 
     fun isAgeValid(age: String): Boolean {

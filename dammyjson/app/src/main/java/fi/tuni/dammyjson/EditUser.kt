@@ -120,10 +120,10 @@ fun Edit(user: User, navController: NavController) {
                 KeyboardType.Password
             ) { password = it }
 
+            Spacer(modifier = Modifier.height(10.dp))
+            // If input is valid, show the button and allow the user to edit the user.
+            DeleteUserButton(user, Modifier.align(Alignment.CenterHorizontally), navController)
         }
-        Spacer(modifier = Modifier.height(20.dp))
-        // If input is valid, show the button and allow the user to edit the user.
-        DeleteUserButton(user, Modifier.align(Alignment.CenterHorizontally), navController)
     }
 }
 

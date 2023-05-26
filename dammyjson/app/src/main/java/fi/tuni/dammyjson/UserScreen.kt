@@ -4,6 +4,9 @@ import FetchTools
 import User
 import android.util.Log
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Edit
@@ -11,7 +14,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 /**
@@ -57,15 +62,22 @@ fun UserScreen(navController: NavController, userId: Int? = null) {
 @Composable
 fun UserFound(navController: NavController, user: User) {
     Log.d("UserScreen", "UserFound: ${user}")
-    Box(modifier = Modifier.fillMaxSize()) {
-        IconButton(Icons.Filled.ArrowBack, "Back", Modifier.align(Alignment.TopStart)) {
-            navController.popBackStack()
-        }
-        IconButton(Icons.Filled.Edit, "Back", Modifier.align(Alignment.TopEnd) ) {
-            navController.navigate("EditUser/${user.id}")
+    Column {
+        Box(modifier = Modifier.fillMaxWidth()) {
+            Text("User",
+                fontFamily = FontFamily.SansSerif,
+                fontSize = 30.sp,
+                modifier = Modifier.align(Alignment.Center)
+            )
+            IconButton(Icons.Filled.ArrowBack, "Back", Modifier.align(Alignment.TopStart)) {
+                navController.popBackStack()
+            }
+            IconButton(Icons.Filled.Edit, "Back", Modifier.align(Alignment.TopEnd) ) {
+                navController.navigate("EditUser/${user.id}")
+            }
         }
         Column(modifier = Modifier
-            .align(Alignment.Center)
+            .verticalScroll(rememberScrollState())
             .padding(10.dp)) {
             TextAreaWithLabel(label = "Name:", text = "${user.firstName} ${user.lastName}")
             TextAreaWithLabel(label = "Phone:", text = user.phone)
@@ -75,6 +87,6 @@ fun UserFound(navController: NavController, user: User) {
             TextAreaWithLabel(label = "Password:", text = user.password)
 
         }
-
     }
+
 }

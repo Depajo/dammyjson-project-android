@@ -1,0 +1,66 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:////PointingToDeclaration/app/[root]/index.html
+$dokka.location:/FetchTools///PointingToDeclaration/app/[root]/-fetch-tools/index.html
+$dokka.location:/FetchTools/FetchTools/#/PointingToDeclaration/app/[root]/-fetch-tools/-fetch-tools.html
+$dokka.location:/FetchTools/deleteData/#kotlin.String#kotlin.Function1[kotlin.String,kotlin.Unit]#kotlin.Function1[java.io.IOException,kotlin.Unit]/PointingToDeclaration/app/[root]/-fetch-tools/delete-data.html
+$dokka.location:/FetchTools/getData/#kotlin.String#kotlin.Function1[kotlin.String,kotlin.Unit]#kotlin.Function1[java.io.IOException,kotlin.Unit]/PointingToDeclaration/app/[root]/-fetch-tools/get-data.html
+$dokka.location:/FetchTools/parseAllUserDataToObject/#kotlin.String/PointingToDeclaration/app/[root]/-fetch-tools/parse-all-user-data-to-object.html
+$dokka.location:/FetchTools/parseOneUserDataToObject/#kotlin.String/PointingToDeclaration/app/[root]/-fetch-tools/parse-one-user-data-to-object.html
+$dokka.location:/FetchTools/parseUserDataToJson/#User/PointingToDeclaration/app/[root]/-fetch-tools/parse-user-data-to-json.html
+$dokka.location:/FetchTools/postData/#kotlin.String#kotlin.String#kotlin.Function1[kotlin.String,kotlin.Unit]#kotlin.Function1[java.io.IOException,kotlin.Unit]/PointingToDeclaration/app/[root]/-fetch-tools/post-data.html
+$dokka.location:/FetchTools/putData/#kotlin.String#kotlin.String#kotlin.Function1[kotlin.String,kotlin.Unit]#kotlin.Function1[java.io.IOException,kotlin.Unit]/PointingToDeclaration/app/[root]/-fetch-tools/put-data.html
+$dokka.location:/User///PointingToDeclaration/app/[root]/-user/index.html
+$dokka.location:/User/User/#kotlin.Int#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/app/[root]/-user/-user.html
+$dokka.location:/User/age/#/PointingToDeclaration/app/[root]/-user/age.html
+$dokka.location:/User/email/#/PointingToDeclaration/app/[root]/-user/email.html
+$dokka.location:/User/firstName/#/PointingToDeclaration/app/[root]/-user/first-name.html
+$dokka.location:/User/id/#/PointingToDeclaration/app/[root]/-user/id.html
+$dokka.location:/User/lastName/#/PointingToDeclaration/app/[root]/-user/last-name.html
+$dokka.location:/User/password/#/PointingToDeclaration/app/[root]/-user/password.html
+$dokka.location:/User/phone/#/PointingToDeclaration/app/[root]/-user/phone.html
+$dokka.location:/User/username/#/PointingToDeclaration/app/[root]/-user/username.html
+$dokka.location:/Users///PointingToDeclaration/app/[root]/-users/index.html
+$dokka.location:/Users/Users/#kotlin.collections.List[User]/PointingToDeclaration/app/[root]/-users/-users.html
+$dokka.location:/Users/users/#/PointingToDeclaration/app/[root]/-users/users.html
+$dokka.location:/ValidateTools///PointingToDeclaration/app/[root]/-validate-tools/index.html
+$dokka.location:/ValidateTools/ValidateTools/#/PointingToDeclaration/app/[root]/-validate-tools/-validate-tools.html
+$dokka.location:/ValidateTools/isAgeValid/#kotlin.String/PointingToDeclaration/app/[root]/-validate-tools/is-age-valid.html
+$dokka.location:/ValidateTools/isEmailValid/#kotlin.String/PointingToDeclaration/app/[root]/-validate-tools/is-email-valid.html
+$dokka.location:/ValidateTools/isFirstNameValid/#kotlin.String/PointingToDeclaration/app/[root]/-validate-tools/is-first-name-valid.html
+$dokka.location:/ValidateTools/isLastNameValid/#kotlin.String/PointingToDeclaration/app/[root]/-validate-tools/is-last-name-valid.html
+$dokka.location:/ValidateTools/isPasswordValid/#kotlin.String/PointingToDeclaration/app/[root]/-validate-tools/is-password-valid.html
+$dokka.location:/ValidateTools/isPhoneValid/#kotlin.String/PointingToDeclaration/app/[root]/-validate-tools/is-phone-valid.html
+$dokka.location:/ValidateTools/isUserValid/#User/PointingToDeclaration/app/[root]/-validate-tools/is-user-valid.html
+$dokka.location:/ValidateTools/isUsernameValid/#kotlin.String/PointingToDeclaration/app/[root]/-validate-tools/is-username-valid.html
+$dokka.location:fi.tuni.dammyjson.ui.theme////PointingToDeclaration/app/fi.tuni.dammyjson.ui.theme/index.html
+$dokka.location:fi.tuni.dammyjson.ui.theme//DammyjsonTheme/#kotlin.Boolean#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/app/fi.tuni.dammyjson.ui.theme/-dammyjson-theme.html
+$dokka.location:fi.tuni.dammyjson.ui.theme//Purple200/#/PointingToDeclaration/app/fi.tuni.dammyjson.ui.theme/-purple200.html
+$dokka.location:fi.tuni.dammyjson.ui.theme//Purple500/#/PointingToDeclaration/app/fi.tuni.dammyjson.ui.theme/-purple500.html
+$dokka.location:fi.tuni.dammyjson.ui.theme//Purple700/#/PointingToDeclaration/app/fi.tuni.dammyjson.ui.theme/-purple700.html
+$dokka.location:fi.tuni.dammyjson.ui.theme//Shapes/#/PointingToDeclaration/app/fi.tuni.dammyjson.ui.theme/-shapes.html
+$dokka.location:fi.tuni.dammyjson.ui.theme//Teal200/#/PointingToDeclaration/app/fi.tuni.dammyjson.ui.theme/-teal200.html
+$dokka.location:fi.tuni.dammyjson.ui.theme//Typography/#/PointingToDeclaration/app/fi.tuni.dammyjson.ui.theme/-typography.html
+$dokka.location:fi.tuni.dammyjson////PointingToDeclaration/app/fi.tuni.dammyjson/index.html
+$dokka.location:fi.tuni.dammyjson//Add/#androidx.navigation.NavController/PointingToDeclaration/app/fi.tuni.dammyjson/-add.html
+$dokka.location:fi.tuni.dammyjson//AddButton/#androidx.navigation.NavController#androidx.compose.ui.Modifier/PointingToDeclaration/app/fi.tuni.dammyjson/-add-button.html
+$dokka.location:fi.tuni.dammyjson//AddUserButton/#User#androidx.compose.ui.Modifier#androidx.navigation.NavController#kotlin.Boolean/PointingToDeclaration/app/fi.tuni.dammyjson/-add-user-button.html
+$dokka.location:fi.tuni.dammyjson//CreateUserList/#kotlin.String#androidx.navigation.NavController/PointingToDeclaration/app/fi.tuni.dammyjson/-create-user-list.html
+$dokka.location:fi.tuni.dammyjson//DeleteUserButton/#User#androidx.compose.ui.Modifier#androidx.navigation.NavController/PointingToDeclaration/app/fi.tuni.dammyjson/-delete-user-button.html
+$dokka.location:fi.tuni.dammyjson//Edit/#User#androidx.navigation.NavController/PointingToDeclaration/app/fi.tuni.dammyjson/-edit.html
+$dokka.location:fi.tuni.dammyjson//EditUserButton/#User#androidx.compose.ui.Modifier#androidx.navigation.NavController#kotlin.Boolean/PointingToDeclaration/app/fi.tuni.dammyjson/-edit-user-button.html
+$dokka.location:fi.tuni.dammyjson//GetEditData/#androidx.navigation.NavController#kotlin.Int/PointingToDeclaration/app/fi.tuni.dammyjson/-get-edit-data.html
+$dokka.location:fi.tuni.dammyjson//IconButton/#androidx.compose.ui.graphics.vector.ImageVector#kotlin.String#androidx.compose.ui.Modifier#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/app/fi.tuni.dammyjson/-icon-button.html
+$dokka.location:fi.tuni.dammyjson//MainScreen/#androidx.navigation.NavController/PointingToDeclaration/app/fi.tuni.dammyjson/-main-screen.html
+$dokka.location:fi.tuni.dammyjson//MyTextField/#kotlin.String#kotlin.String#kotlin.Boolean#androidx.compose.ui.text.input.KeyboardType#kotlin.Function1[kotlin.String,kotlin.Unit]/PointingToDeclaration/app/fi.tuni.dammyjson/-my-text-field.html
+$dokka.location:fi.tuni.dammyjson//ProcessView/#androidx.navigation.NavController/PointingToDeclaration/app/fi.tuni.dammyjson/-process-view.html
+$dokka.location:fi.tuni.dammyjson//SearchField/#kotlin.Function1[kotlin.String,kotlin.Unit]/PointingToDeclaration/app/fi.tuni.dammyjson/-search-field.html
+$dokka.location:fi.tuni.dammyjson//TextAreaWithLabel/#kotlin.String#kotlin.String/PointingToDeclaration/app/fi.tuni.dammyjson/-text-area-with-label.html
+$dokka.location:fi.tuni.dammyjson//UserFound/#androidx.navigation.NavController#User/PointingToDeclaration/app/fi.tuni.dammyjson/-user-found.html
+$dokka.location:fi.tuni.dammyjson//UserScreen/#androidx.navigation.NavController#kotlin.Int?/PointingToDeclaration/app/fi.tuni.dammyjson/-user-screen.html
+$dokka.location:fi.tuni.dammyjson//UsersList/#kotlin.collections.List[User]#androidx.navigation.NavController/PointingToDeclaration/app/fi.tuni.dammyjson/-users-list.html
+$dokka.location:fi.tuni.dammyjson/MainActivity///PointingToDeclaration/app/fi.tuni.dammyjson/-main-activity/index.html
+$dokka.location:fi.tuni.dammyjson/MainActivity/MainActivity/#/PointingToDeclaration/app/fi.tuni.dammyjson/-main-activity/-main-activity.html
+fi.tuni.dammyjson
+fi.tuni.dammyjson.ui.theme
+
